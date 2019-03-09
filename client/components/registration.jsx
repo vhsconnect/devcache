@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Login = props => {
+const Registration = props => {
 
   return (
     <div className='login-box'>
@@ -23,7 +23,6 @@ const Login = props => {
       >
         Login.
       </button>
-      <a href="#">Register</a> 
     </div>
   );
 };

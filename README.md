@@ -17,4 +17,5 @@ A personalized cache of code snippets for developers.
 <br/><br/><br/>
 
 > Stitched together by Team Stark, long live the North!
+<br />
 > Anthony Valentin, Parker Allen & Just Noah.

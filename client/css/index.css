@@ -168,14 +168,6 @@ p {
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 600px) {
-  .login-box {
-    border: 0;
-    margin: 0;
-    max-width: 600px;
-    padding-top: 40px;
-  }
-}
 .login-box i {
   font-size: 18rem;
   color: #3f3f3f;
@@ -189,16 +181,8 @@ p {
   padding: 7px;
   margin-bottom: 20px;
 }
-@media (max-width: 600px) {
-  .login-box input {
-    font-size: 3rem;
-    width: 100%;
-    max-width: 600px;
-    padding-left: 10%;
-  }
-}
 .login-box button {
-  width: 140px;
+  width: 200px;
   height: 50px;
   color: #3f3f3f;
   background-color: #ffffff;
@@ -218,13 +202,8 @@ p {
   color: #ffffff;
   border: 3px solid #ffffff;
 }
-@media (max-width: 600px) {
-  .login-box button {
-    font-size: 2.5rem;
-    height: 70px;
-    width: 50%;
-    border: 0;
-    border-radius: 0;
-    padding: 0;
-  }
+.login-box a {
+  font-size: 1.4rem;
+  margin-top: 10px;
+  cursor: pointer;
 }
