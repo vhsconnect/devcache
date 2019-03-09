@@ -33,9 +33,9 @@ module.exports = {
   },
   devServer: {
     publicPath: '/build',
-    contentBase: path.join(__dirname, 'build'),
+    contentBase: './',
     proxy: {
-      '/api': {
+      '/': {
         target: 'http://localhost:3000',
         secure: false
       }
