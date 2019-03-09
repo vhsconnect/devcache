@@ -1,0 +1,43 @@
+{
+  "name": "devcache",
+  "version": "0.1.0",
+  "description": "A personalized cache of code snippets for developers.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "build": "webpack",
+    "dev": "webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devcache/devcache.git"
+  },
+  "author": "Anthony Valentin, Parker Allen & Just Noah.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devcache/devcache/issues"
+  },
+  "homepage": "https://github.com/devcache/devcache#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "pg-promise": "^8.6.3",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "webpack": "^4.29.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.10",
+    "style-loader": "^0.23.1",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
+  }
+}
