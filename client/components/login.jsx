@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Login = props => {
 
@@ -9,14 +9,21 @@ const Login = props => {
         type='text'
         name='user'
         placeholder='username.'
+        onChange={ props.updateUserState }
       />
       <input
         id='pass'
         type='password'
         name='pass'
         placeholder='password.'
+        onChange={ props.updatePassState }
       />
-      <button>Login.</button>
+      <button
+        onClick={ props.verifyUser }
+      >
+        Login.
+      </button>
+      <a onClick={ props.register }>Register</a> 
     </div>
   );
 };
