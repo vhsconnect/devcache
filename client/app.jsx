@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 
+// Import Components
+
+import Login from './components/login.jsx';
+
 class App extends Component {
   constructor(props){
     super(props); 
@@ -8,7 +12,11 @@ class App extends Component {
 
   render() {
     return (
-      <h1>Beep beep.</h1>
+      <React.Fragment>
+        <h1>devCache</h1>
+        <p>A personalized cache of code snippets for developers.</p>
+        <Login />
+      </React.Fragment>
     );
   }
 }
