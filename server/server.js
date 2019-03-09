@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors())
 app.use(bodyParser.json());
-app.use('/build', express.static(path.join(__dirname, '../build')));
+app.use('/', express.static(path.join(__dirname, '../build')));
 
 app.get('/allusers', controller.getUsers)
 

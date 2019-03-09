@@ -3,28 +3,45 @@ import React from 'react';
 const Registration = props => {
 
   return (
-    <div className='login-box'>
-      <input
-        id='user'
-        type='text'
-        name='user'
-        placeholder='username.'
-        onChange={ props.updateUserState }
-      />
-      <input
-        id='pass'
-        type='password'
-        name='pass'
-        placeholder='password.'
-        onChange={ props.updatePassState }
-      />
-      <button
-        onClick={ props.verifyUser }
-      >
-        Login.
-      </button>
-    </div>
+    <React.Fragment>
+      <h3>Sign up for devCache!</h3>
+      <div className='login-box'>
+        <input
+          id='fullname'
+          type='text'
+          name='fullname'
+          placeholder='full name.'
+          onChange={ props.updateFullNameState }
+        />
+        <input
+          id='email'
+          type='email'
+          name='email'
+          placeholder='email address.'
+          onChange={ props.updateEmailState }
+        />
+        <input
+          id='user'
+          type='text'
+          name='user'
+          placeholder='username.'
+          onChange={ props.updateUserState }
+        />
+        <input
+          id='pass'
+          type='password'
+          name='pass'
+          placeholder='password.'
+          onChange={ props.updatePassState }
+        />
+        <button
+          onClick={ props.createUser }
+        >
+          Submit.
+        </button>
+      </div>
+    </React.Fragment>
   );
 };
 
-export default Login;
+export default Registration;

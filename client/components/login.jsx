@@ -23,7 +23,7 @@ const Login = props => {
       >
         Login.
       </button>
-      <a href="#">Register</a> 
+      <a onClick={ props.register }>Register</a> 
     </div>
   );
 };
