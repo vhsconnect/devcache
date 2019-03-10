@@ -3,7 +3,8 @@ import React from 'react';
 const addSnip = (props) => {
     
     return (
-      <h1>Add Snip</h1>
+      <textarea placeholder='...add Snippet'>
+      </textarea>
     );
 };
 

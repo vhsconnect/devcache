@@ -3,7 +3,9 @@ import React from 'react';
 const presentSnip = (props) => {
     
     return (
-      <h1>Present Snip</h1>
+      <div>
+        <h1>PAST SNIPPET</h1>
+      </div>
     );
 };
 

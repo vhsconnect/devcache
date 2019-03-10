@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 // Import External Components
 import Login from './components/login.jsx';
 import Registration from './components/registration.jsx';
+import Main from './components/main.jsx';
 
 // Component Body
 class App extends Component {
