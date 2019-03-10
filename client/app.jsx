@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 // Import External Components
 import Login from './components/login.jsx';
 import Registration from './components/registration.jsx';
+import Main from './components/main.jsx';
 
 // Component Body
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
       pass: "",
       name: "",
       email: "",
-      isLoggedIn: false, 
+      isLoggedIn: true, 
       register: false
     };
     this.updateFullNameState = this.updateFullNameState.bind(this);
@@ -28,6 +29,7 @@ class App extends Component {
   register() {
     this.setState({ register: true })
   }
+
   updateFullNameState(e) {
     this.setState({ name: e.target.value });
   };
@@ -60,7 +62,6 @@ class App extends Component {
     .catch(err => console.log('err -->', err));
   }
 
-
   verifyUser() {
     fetch('http://localhost:3000/login', {
       headers: {
@@ -81,9 +82,7 @@ class App extends Component {
   render() {
     if (this.state.isLoggedIn) {
       return(
-        <React.Fragment>
-          <h1>LOGGED IN</h1>
-        </React.Fragment>
+        <Main />
       );
     } else {
       if (this.state.register) {
