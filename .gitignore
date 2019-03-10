@@ -1,5 +1,4 @@
 
 node_modules
-./server/serverConfig.js
-./build/bundle.js
-
+/server/serverConfig.js
+/build/bunde.js
