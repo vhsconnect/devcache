@@ -48,7 +48,7 @@ class App extends Component {
 
   createUser() {
     const { name, email, user, pass } = this.state;
-    fetch('http://localhost:3000/register', {
+    fetch('http://localhost:3000/signup', {
       headers: {
         "Content-Type": "application/json"
       }, 
@@ -56,7 +56,6 @@ class App extends Component {
       body: JSON.stringify({ name, email, user, pass })
     })
     .then(res =>  {
-      this.setState({ isLoggedIn: true });
       if (res.ok) this.setState({ isLoggedIn: true });
     })
     .catch(err => console.log('err -->', err));

@@ -3,6 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const controller = require('./controller.js');
+const sessionController = require('./sessionController.js')
 const path = require('path');
 
 const app = express();
@@ -16,8 +17,8 @@ app.use('/', express.static(path.join(__dirname, '../build')));
 //***************** */ ROUTES
 
 app.get('/allusers', controller.getUsers)
-
-app.post('/adduser', controller.createUser)
+app.post('/login', controller.verifyUser, sessionController.setCookie, sessionController.startSession)
+app.post('/signup', controller.createUser, sessionController.setCookie, sessionController.startSession)
 
 
 //***************** */
