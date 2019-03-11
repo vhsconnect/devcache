@@ -3,7 +3,7 @@ import React from 'react';
 const snipDetails = (props) => {
 
     return (
-      <div>
+      <div className='details-box'>
         <input 
           id='dateTag'
           type='text'

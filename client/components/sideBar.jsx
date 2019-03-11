@@ -4,7 +4,7 @@ import SearchBar from './searchBar.jsx'
 const sideBar = (props) => {
 
     return (
-      <div>
+      <div className='side-bar'>
         <SearchBar />
       </div>
     );

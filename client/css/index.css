@@ -151,26 +151,13 @@ h1 {
   font-size: 13rem;
   text-align: center;
 }
-h3 {
-  text-align: center;
-  font-size: 2rem;
-  margin: 60px 0 30px;
-}
 p {
   font-size: 2rem;
   text-align: center;
-  margin-top: 20px;
 }
-.container {
-  display: flex;
-}
-.main {
-  display: flex;
-  flex-direction: column;
-}
-.main div {
-  display: flex;
-  justify-content: space-between;
+input,
+textarea {
+  padding: 5px;
 }
 .login-box {
   width: 100%;
@@ -222,4 +209,29 @@ p {
   font-size: 1.4rem;
   margin-top: 10px;
   cursor: pointer;
+}
+.container {
+  display: flex;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: #6d6d6d;
+  border-top-left-radius: 10px;
+}
+.main h3 {
+  font-size: 5rem;
+  text-align: center;
+  color: #ffffff;
+  margin: 30px 0;
+}
+.main textarea {
+  height: 250px;
+}
+.main .details-box {
+  display: flex;
+  justify-content: space-between;
+}
+.side-bar {
+  border: 1px solid #6d6d6d;
 }
