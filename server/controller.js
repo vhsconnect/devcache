@@ -38,8 +38,9 @@ controller.verifyUser = (req, res, next) => {
     bcrypt.compare(password, hash, function(err, judgement){
 
       if (judgement === true) {
-        const uniqueId = uuid()
-        res.locals.uniqueId = uniqueId
+        const session_id = uuid();
+        res.locals.session_id = session_id
+        res.locals.user_id = result.rows[0].user_id
         next()
       } else {
         console.log(err);
@@ -68,13 +69,15 @@ controller.createUser = (req, res, next) => {
   }
   pool.query(query)
     .then(result => {
-      res.locals.uniqueid = uuid();
-      res.locals.id = result.rows[0].user_id;
+      const session_id = uuid();
+      res.locals.session_id = session_id;
+      res.locals.user_id = result.rows[0].user_id;
       next()
     })
     .catch(e => console.error(e.stack));
  })
 } 
+
 
 
 
