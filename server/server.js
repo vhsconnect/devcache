@@ -23,6 +23,7 @@ app.get('/allusers', controller.getUsers)
 app.post('/login', controller.verifyUser, sessionController.setCookie, sessionController.startSession)
 app.post('/signup', controller.createUser, sessionController.setCookie, sessionController.startSession)
 app.post('/createsnippet', snippetController.createSnippet, snippetController.createTags)
+app.get('/gettags', snippetController.getAllUserTags)
 
 
 //***************** */

@@ -44,4 +44,19 @@ snippetController.createTags = (req, res, next) => {
     .catch(err => console.log(err.message))
 }
 
+snippetController.getAllUserTags = (req, res, nex) => {
+  const user_id = req.cookies.user_id;
+  const query = {
+    name: 'get-all-tags',
+    text: 'SELECT tags.tag from tags INNER JOIN snippets on snippets.id = tags.snippet_id WHERE snippets.user_id = $1;',
+    values: [user_id]
+  }
+  pool.query(query)
+  .then(result => {
+    const tags = [];
+    result.rows.forEach(obj => tags.push(obj.tag))
+    res.json(tags)
+  })
+}
+
 module.exports = snippetController;
