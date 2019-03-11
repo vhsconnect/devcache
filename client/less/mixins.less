@@ -39,3 +39,23 @@
 		border: 3px solid @secondary;
   }
 }
+
+.btn-submit(@width: 200px, @height: 60px) {
+	width: @width;
+	height: @height;
+	color: @secondary;
+	background-color: @tertiary;
+	padding: 5px;
+	border: 2px solid @tertiary;
+	border-radius: 5px;
+	font-size: 1.8rem;
+	font-weight: 500;
+	.center;
+  cursor: pointer;
+  
+  &:hover {
+		font-weight: 700;
+    background-color: lighten(@secondary, 25%);
+		color: @primary;
+  }
+}
