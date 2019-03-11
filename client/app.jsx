@@ -10,10 +10,10 @@ class App extends Component {
   constructor(props){
     super(props); 
     this.state = {
-      username: "",
-      password: "",
-      fullname: "",
-      email: "",
+      username: '',
+      password: '',
+      fullname: '',
+      email: '',
       isLoggedIn: true, 
       register: false
     };

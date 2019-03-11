@@ -140,7 +140,7 @@ body,
 }
 #root {
   width: 100%;
-  max-width: 880px;
+  max-width: 1200px;
   padding-top: 50px;
   margin: 0 auto;
 }
@@ -164,7 +164,7 @@ textarea {
   max-width: 500px;
   padding: 80px 0 40px;
   margin: 130px auto;
-  border: 5px solid #3f3f3f;
+  border: 5px solid #000000;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -173,7 +173,7 @@ textarea {
 }
 .login-box i {
   font-size: 18rem;
-  color: #3f3f3f;
+  color: #000000;
   margin-bottom: 35px;
 }
 .login-box input {
@@ -187,10 +187,10 @@ textarea {
 .login-box button {
   width: 200px;
   height: 50px;
-  color: #3f3f3f;
+  color: #000000;
   background-color: #ffffff;
   padding: 5px;
-  border: 4px solid #3f3f3f;
+  border: 4px solid #000000;
   border-radius: 5px;
   font-size: 1.8rem;
   font-weight: 800;
@@ -201,7 +201,7 @@ textarea {
   margin-top: 40px;
 }
 .login-box button:hover {
-  background-color: #7f7f7f;
+  background-color: #404040;
   color: #ffffff;
   border: 3px solid #ffffff;
 }
@@ -214,10 +214,12 @@ textarea {
   display: flex;
 }
 .main {
+  width: 985px;
   display: flex;
   flex-direction: column;
-  background-color: #6d6d6d;
+  background-color: #555555;
   border-top-left-radius: 10px;
+  margin: 0 auto;
 }
 .main h3 {
   font-size: 5rem;
@@ -228,10 +230,64 @@ textarea {
 .main textarea {
   height: 250px;
 }
+.main #comment {
+  height: 50px;
+  font-size: 2rem;
+  text-align: right;
+}
 .main .details-box {
   display: flex;
   justify-content: space-between;
 }
+.main .details-box #date-tag {
+  width: 180px;
+  font-size: 4rem;
+  text-align: center;
+}
+.main .details-box #project-tag {
+  width: 150px;
+  font-size: 2rem;
+  text-align: right;
+}
+.main .details-box #tags {
+  width: 635px;
+  font-size: 2rem;
+  text-align: right;
+}
+.main .details-box button {
+  width: 200px;
+  height: 60px;
+  color: #ffffff;
+  background-color: #555555;
+  padding: 5px;
+  border: 2px solid #555555;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.main .details-box button:hover {
+  font-weight: 700;
+  background-color: #ffffff;
+  color: #000000;
+}
 .side-bar {
-  border: 1px solid #6d6d6d;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+}
+.side-bar .search-bar {
+  display: flex;
+}
+.side-bar .search-bar #search-field {
+  text-align: right;
+}
+.side-bar .search-bar i {
+  width: 30px;
+  height: 30px;
+  font-size: 2rem;
+  padding: 5px;
+  cursor: pointer;
 }

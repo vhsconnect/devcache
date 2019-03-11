@@ -3,10 +3,12 @@
 }
 
 .main {
+  width: 985px;
   display: flex;
   flex-direction: column;
   background-color: @tertiary;
   border-top-left-radius: 10px;
+  margin: 0 auto;
 
   h3 {
     font-size: 5rem;
@@ -19,8 +21,36 @@
     height: 250px;
   }
 
+  #comment {
+    height: 50px;
+    font-size: 2rem; 
+    text-align: right;
+  }
+
   .details-box {
     display: flex;
     justify-content: space-between;
+
+    #date-tag {
+      width: 180px;
+      font-size: 4rem;
+      text-align: center;
+    }
+
+    #project-tag {
+      width: 150px;
+      font-size: 2rem;
+      text-align: right;
+    }
+
+    #tags {
+      width: 635px;
+      font-size: 2rem;
+      text-align: right;
+    }
+
+    button {
+      .btn-submit;
+    }
   }
 }

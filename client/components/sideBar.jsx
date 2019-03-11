@@ -5,7 +5,10 @@ const sideBar = (props) => {
 
     return (
       <div className='side-bar'>
-        <SearchBar />
+        <SearchBar 
+          updateSearch={ props.updateSearch }
+          submitSearch={ props.submitSearch }
+        />
       </div>
     );
 };
