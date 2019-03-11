@@ -10,9 +10,9 @@ class App extends Component {
   constructor(props){
     super(props); 
     this.state = {
-      user: "",
-      pass: "",
-      name: "",
+      username: "",
+      password: "",
+      fullname: "",
       email: "",
       isLoggedIn: true, 
       register: false
@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   updateFullNameState(e) {
-    this.setState({ name: e.target.value });
+    this.setState({ fullname: e.target.value });
   };
 
   updateEmailState(e) {
@@ -39,21 +39,21 @@ class App extends Component {
   };
 
   updateUserState(e) {
-    this.setState({ user: e.target.value });
+    this.setState({ username: e.target.value });
   };
 
   updatePassState(e) {
-    this.setState({ pass: e.target.value });
+    this.setState({ password: e.target.value });
   };
 
   createUser() {
-    const { name, email, user, pass } = this.state;
+    const { fullname, email, username, password } = this.state;
     fetch('http://localhost:3000/signup', {
       headers: {
         "Content-Type": "application/json"
       }, 
       method: 'post',
-      body: JSON.stringify({ name, email, user, pass })
+      body: JSON.stringify({ fullname, email, username, password })
     })
     .then(res =>  {
       if (res.ok) this.setState({ isLoggedIn: true });
@@ -68,8 +68,8 @@ class App extends Component {
       }, 
       method: 'post',
       body: JSON.stringify({ 
-        user: this.state.user,
-        pass: this.state.pass
+        username: this.state.username,
+        password: this.state.password
       })
     })
     .then(res => {
