@@ -8,6 +8,7 @@ const commentBox = (props) => {
         type='text'
         name='comment'
         placeholder='...comments'
+        onChange={ props.updateComment }
       />
     );
 };

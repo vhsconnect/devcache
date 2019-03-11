@@ -10,6 +10,13 @@ import SideBar from './sideBar.jsx';
 class Main extends Component {
   constructor(props) {
     super();
+    this.state = {
+      snippet: '',
+      commments: '',
+      project: '',
+      tags: '',
+      search: '',
+    }
   }
 
   render() {
@@ -17,11 +24,22 @@ class Main extends Component {
       <div className='container'>
         <div className='main'>
           <h3>devCache</h3>
-          <AddSnip />
-          <CommentBox />
-          <SnipDetails />
+          <AddSnip 
+            updateSnippetContent={ this.updateSnippetContent }
+          />
+          <CommentBox 
+            updateComment={ this.updateComment }
+          />
+          <SnipDetails 
+            updateProjectTag={ this.updateProjectTag }
+            updateTags={ this.updateTags }
+            submitSnippet={ this.submitSnippet }
+          />
         </div>
-        <SideBar />
+        <SideBar 
+          updateSearch={ this.updateSearch }
+          submitSearch={ this.submitSearch }
+        />
       </div>
     );
   }
