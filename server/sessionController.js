@@ -20,7 +20,7 @@ sessionController.startSession = (req, res, next) => {
   }
   pool.query(query)
   .then(result => {
-    res.send(201, result)
+    res.status(201).send(result);
   })
 }
 
