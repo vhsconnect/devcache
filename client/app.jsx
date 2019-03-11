@@ -10,11 +10,11 @@ class App extends Component {
   constructor(props){
     super(props); 
     this.state = {
-      username: '',
-      password: '',
-      fullname: '',
-      email: '',
-      isLoggedIn: true, 
+      username: "",
+      password: "",
+      fullname: "",
+      email: "",
+      isLoggedIn: false,
       register: false
     };
     this.updateFullNameState = this.updateFullNameState.bind(this);
