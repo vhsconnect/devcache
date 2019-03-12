@@ -6,14 +6,18 @@ const displaySnippets = (props) => {
 
   for (let i = 0; i < snippetsArray.length; i++) {
     snippetsDisplayArray.push(
-      <div className='tagged-snippet' key={'snippet' + i}>
+      <div 
+        className='tagged-snippet' 
+        key={'snippet' + i}
+        id={ snippetsArray[i].id }
+      >
         <div className='tagged-content-box'>
           <p className='tagged-snippet-content'>
             { snippetsArray[i].snippet }
           </p>
           <i 
             className="fas fa-trash" 
-            onClick={ props.deleteSnippet }
+            onClick={ () => props.deleteSnippet(snippetsArray[i].id, i) }
           />
         </div>
         <div className='tagged-details-box'>

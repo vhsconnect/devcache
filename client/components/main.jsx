@@ -121,8 +121,20 @@ class Main extends Component {
     this.grabSnippetsByTag(tag);
   }
 
-  deleteSnippet() {
-    console.log('hello');
+  deleteSnippet(id, index) {
+    fetch(`http://localhost:3000/deletesnippetbyid?id=${id}`, {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          method: 'get'
+    })
+    .then(res => res.json())
+    .then(data => {
+      let updated = [...this.state.taggedSnippets];
+      updated.splice(index, 1);
+      this.setState({ taggedSnippets: updated })
+    })
+    .catch(err => console.log('err -->', err));
   }
 
   // Render Logic
