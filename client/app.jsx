@@ -26,12 +26,13 @@ class App extends Component {
     this.updateEmailState = this.updateEmailState.bind(this);
     this.updateUserState = this.updateUserState.bind(this);
     this.updatePassState = this.updatePassState.bind(this);
+    
     this.createUser = this.createUser.bind(this);
     this.verifyUser = this.verifyUser.bind(this);
     this.registerUser = this.registerUser.bind(this);
   };
 
-  // State Methods
+  // Update Methods
 
   registerUser() {
     this.setState({ isRegistered: true })
@@ -53,44 +54,40 @@ class App extends Component {
     this.setState({ password: e.target.value });
   };
 
+  // User Methods
+
   createUser() {
     const { fullname, email, username, password } = this.state;
 
     fetch('http://localhost:3000/signup', {
-      headers: {
-        "Content-Type": "application/json"
-      }, 
+      headers: { "Content-Type": "application/json" }, 
       method: 'post',
       body: JSON.stringify({ fullname, email, username, password })
     })
     .then(res =>  {
       if (res.ok) this.setState({ isLoggedIn: true });
     })
-    .catch(err => console.log('err -->', err));
+    .catch(err => console.error('err -->', err));
   };
 
   verifyUser() {
     const { username, password } = this.state;
 
     fetch('http://localhost:3000/login', {
-      headers: {
-        "Content-Type": "application/json"
-      }, 
+      headers: { "Content-Type": "application/json" }, 
       method: 'post',
       body: JSON.stringify({ username, password })
     })
     .then(res => {
       if (res.ok) this.setState({ isLoggedIn: true });
     })
-    .catch(err => console.log('err -->', err));
+    .catch(err => console.error('err -->', err));
   };
 
   render() {
     
     if (this.state.isLoggedIn) {
-      return(
-        <Main />
-      );
+      return <Main />
     } else {
       if (this.state.isRegistered) {
         return (
