@@ -20,12 +20,20 @@ class Main extends Component {
       tags: '',
       search: '',
       userTags: [],
-      taggedSnippets: [{
-        snippet: 'codecodecode',
-        date: '12/12/12',
-        project: 'devCache',
-        comments: 'Testing.'
-      }]
+      taggedSnippets: [
+        {
+          snippet: 'console.log(\'hello world\')',
+          date: '12/12/12',
+          comments: 'Testing',
+          project: 'Scratch',
+        },
+        {
+          snippet: 'console.log(\'beep beep.\')',
+          date: '12/13/12',
+          comments: 'Meow.',
+          project: 'Scratch',
+        }
+      ]
     };
     this.updateSnippetContent = this.updateSnippetContent.bind(this);
     this.updateComments = this.updateComments.bind(this);

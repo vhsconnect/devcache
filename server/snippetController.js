@@ -39,7 +39,6 @@ snippetController.createTags = (req, res, next) => {
     Promise.all(promises)
     .then(values => {
       values.forEach(tagQuery=>pool.query(tagQuery))
-      pool.end();
       res.send(201, 'tags successfully added')
     })
     .catch(err => console.log(err.message))
@@ -56,7 +55,6 @@ snippetController.getAllUserTags = (req, res, next) => {
   .then(result => {
     const tags = [];
     result.rows.forEach(obj => tags.push(obj.tag))
-    pool.end();
     res.json(tags);
   })
 }
@@ -99,7 +97,7 @@ snippetController.getSnippetsBySnippetIds = (req, res, next) => {
   .then(snippetQuery => {
     let resultsArr = [];
     snippetQuery.forEach( (x, y) => {
-      if (y < 4){
+      if (y < 2){
         console.log(x)
         let temp =  pool.query(x)
         resultsArr.push(temp)
