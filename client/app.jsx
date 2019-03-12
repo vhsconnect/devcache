@@ -14,7 +14,7 @@ class App extends Component {
       password: "",
       fullname: "",
       email: "",
-      isLoggedIn: false,
+      isLoggedIn: true,
       register: false
     };
     this.updateFullNameState = this.updateFullNameState.bind(this);
@@ -28,7 +28,7 @@ class App extends Component {
 
   register() {
     this.setState({ register: true })
-  }
+  };
 
   updateFullNameState(e) {
     this.setState({ fullname: e.target.value });
@@ -59,7 +59,7 @@ class App extends Component {
       if (res.ok) this.setState({ isLoggedIn: true });
     })
     .catch(err => console.log('err -->', err));
-  }
+  };
 
   verifyUser() {
     fetch('http://localhost:3000/login', {
@@ -111,7 +111,7 @@ class App extends Component {
       );
      }
     }
-  }
-}
+  };
+};
 
 export default App;

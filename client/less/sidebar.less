@@ -1,19 +1,29 @@
 .side-bar {
+  width: 20%;
   background-color: @secondary;
-  border: 1px solid @primary;
+  border: 2px solid @tertiary;
+
+  p {
+    line-height: 1.5;
+    cursor: pointer;
+  }
 
   .search-bar {
     display: flex;
     
     #search-field {
+      width: 100%;
       text-align: right;
+      margin-bottom: 15px;
     }
 
     i {
       width: 30px;
       height: 30px;
       font-size: 2rem;
+      text-align: center;
       padding: 5px;
+      margin: 0 auto;
       cursor: pointer;
     }
   }

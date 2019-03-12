@@ -4,7 +4,7 @@ const Registration = props => {
 
   return (
     <React.Fragment>
-      <h3>Sign up for devCache!</h3>
+      <h3>devCache Registration.</h3>
       <div className='login-box'>
         <input
           id='fullname'

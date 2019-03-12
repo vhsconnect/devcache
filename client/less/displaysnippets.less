@@ -1,0 +1,54 @@
+.tagged-snippets-box {
+  width: @main-width;
+  border: 1px solid @quaternary;
+
+  p {
+    border: 1px solid @quaternary;
+    padding: 7px;
+  }
+
+  .tagged-snippet {
+    border: 1px solid @tertiary;
+
+      .tagged-content-box {
+        display: flex;
+        position: relative;
+
+        .tagged-snippet-content {
+          width: 100%;
+          text-align: left;
+        }
+        
+        i {
+          color: @tertiary;
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          font-size: 2rem;
+          text-align: center;
+          padding: 5px;
+          margin: 0 auto;
+          cursor: pointer;
+        }
+      }
+    
+      .tagged-details-box {
+        display: flex;
+    
+        .tagged-snippet-date {
+          width: 20%;
+        }
+    
+        .tagged-snippet-project {
+          width: 20%;
+        }
+    
+        .tagged-snippet-comments {
+          text-align: right;
+          width: 60%;
+        }
+      }
+  }
+}

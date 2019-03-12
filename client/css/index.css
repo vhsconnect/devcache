@@ -214,10 +214,11 @@ textarea {
   display: flex;
 }
 .main {
-  width: 985px;
+  width: 80%;
   display: flex;
   flex-direction: column;
   background-color: #555555;
+  border: 2px solid #555555;
   border-top-left-radius: 10px;
   margin: 0 auto;
 }
@@ -229,6 +230,8 @@ textarea {
 }
 .main textarea {
   height: 250px;
+  padding: 10px;
+  resize: none;
 }
 .main #comment {
   height: 50px;
@@ -275,19 +278,73 @@ textarea {
   color: #000000;
 }
 .side-bar {
+  width: 20%;
   background-color: #ffffff;
-  border: 1px solid #000000;
+  border: 2px solid #555555;
+}
+.side-bar p {
+  line-height: 1.5;
+  cursor: pointer;
 }
 .side-bar .search-bar {
   display: flex;
 }
 .side-bar .search-bar #search-field {
+  width: 100%;
   text-align: right;
+  margin-bottom: 15px;
 }
 .side-bar .search-bar i {
   width: 30px;
   height: 30px;
   font-size: 2rem;
+  text-align: center;
   padding: 5px;
+  margin: 0 auto;
   cursor: pointer;
+}
+.tagged-snippets-box {
+  width: 1200px;
+  border: 1px solid #a9a9a9;
+}
+.tagged-snippets-box p {
+  border: 1px solid #a9a9a9;
+  padding: 7px;
+}
+.tagged-snippets-box .tagged-snippet {
+  border: 1px solid #555555;
+}
+.tagged-snippets-box .tagged-snippet .tagged-content-box {
+  display: flex;
+  position: relative;
+}
+.tagged-snippets-box .tagged-snippet .tagged-content-box .tagged-snippet-content {
+  width: 100%;
+  text-align: left;
+}
+.tagged-snippets-box .tagged-snippet .tagged-content-box i {
+  color: #555555;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 2rem;
+  text-align: center;
+  padding: 5px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.tagged-snippets-box .tagged-snippet .tagged-details-box {
+  display: flex;
+}
+.tagged-snippets-box .tagged-snippet .tagged-details-box .tagged-snippet-date {
+  width: 20%;
+}
+.tagged-snippets-box .tagged-snippet .tagged-details-box .tagged-snippet-project {
+  width: 20%;
+}
+.tagged-snippets-box .tagged-snippet .tagged-details-box .tagged-snippet-comments {
+  text-align: right;
+  width: 60%;
 }
