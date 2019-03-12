@@ -1,33 +1,40 @@
 import React, { Component } from 'react'
 
-// Import External Components
+// Import Children
+
 import Login from './components/login.jsx';
 import Registration from './components/registration.jsx';
 import Main from './components/main.jsx';
 
 // Component Body
+
 class App extends Component {
+
   constructor(props){
-    super(props); 
+    super(props);
+
     this.state = {
       username: "",
       password: "",
       fullname: "",
       email: "",
       isLoggedIn: false,
-      register: false
+      isRegistered: false
     };
+    
     this.updateFullNameState = this.updateFullNameState.bind(this);
     this.updateEmailState = this.updateEmailState.bind(this);
     this.updateUserState = this.updateUserState.bind(this);
     this.updatePassState = this.updatePassState.bind(this);
     this.createUser = this.createUser.bind(this);
     this.verifyUser = this.verifyUser.bind(this);
-    this.register = this.register.bind(this);
+    this.registerUser = this.registerUser.bind(this);
   };
 
-  register() {
-    this.setState({ register: true })
+  // State Methods
+
+  registerUser() {
+    this.setState({ isRegistered: true })
   };
 
   updateFullNameState(e) {
@@ -48,6 +55,7 @@ class App extends Component {
 
   createUser() {
     const { fullname, email, username, password } = this.state;
+
     fetch('http://localhost:3000/signup', {
       headers: {
         "Content-Type": "application/json"
@@ -62,15 +70,14 @@ class App extends Component {
   };
 
   verifyUser() {
+    const { username, password } = this.state;
+
     fetch('http://localhost:3000/login', {
       headers: {
         "Content-Type": "application/json"
       }, 
       method: 'post',
-      body: JSON.stringify({ 
-        username: this.state.username,
-        password: this.state.password
-      })
+      body: JSON.stringify({ username, password })
     })
     .then(res => {
       if (res.ok) this.setState({ isLoggedIn: true });
@@ -79,12 +86,13 @@ class App extends Component {
   };
 
   render() {
+    
     if (this.state.isLoggedIn) {
       return(
         <Main />
       );
     } else {
-      if (this.state.register) {
+      if (this.state.isRegistered) {
         return (
           <React.Fragment>
             <Registration 
@@ -105,7 +113,7 @@ class App extends Component {
               updateUserState={ this.updateUserState }
               updatePassState={ this.updatePassState }
               verifyUser={ this.verifyUser }
-              register={this.register}
+              registerUser={this.registerUser}
             />
           </React.Fragment>
       );

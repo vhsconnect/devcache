@@ -8,11 +8,13 @@ import SnipDetails from './snipDetails.jsx';
 import DisplaySnippets from './displaySnippets.jsx';
 import SideBar from './sideBar.jsx';
 
-// Main Component Class
+// Component Body
 
 class Main extends Component {
+
   constructor(props) {
     super();
+
     this.state = {
       snippet: '',
       commments: '',
@@ -20,13 +22,9 @@ class Main extends Component {
       tags: '',
       search: '',
       userTags: [],
-      taggedSnippets: [{
-        snippet: 'codecodecode',
-        date: '12/12/12',
-        project: 'devCache',
-        comments: 'Testing.'
-      }]
+      taggedSnippets: []
     };
+    
     this.updateSnippetContent = this.updateSnippetContent.bind(this);
     this.updateComments = this.updateComments.bind(this);
     this.updateProjectTag = this.updateProjectTag.bind(this);
@@ -41,6 +39,7 @@ class Main extends Component {
   // State Methods
 
   getTagsFromDB() {
+
     fetch('http://localhost:3000/gettags', {
           headers: {
             "Content-Type": "application/json"
@@ -53,6 +52,7 @@ class Main extends Component {
   };
 
   grabSnippetsByTag(tag) {
+
     fetch(`http://localhost:3000/getsnippetsbytag/?tag=${tag}`, {
           headers: {
             "Content-Type": "application/json"
@@ -87,6 +87,7 @@ class Main extends Component {
   };
   
   submitSnippet() {
+
     fetch('http://localhost:3000/createsnippet', {
       headers: {
         "Content-Type": "application/json"
@@ -119,7 +120,7 @@ class Main extends Component {
   grabSnippetsFromDB(e) {
     let tag = e.target.id;
     this.grabSnippetsByTag(tag);
-  }
+  };
 
   deleteSnippet(id, index) {
     fetch(`http://localhost:3000/deletesnippetbyid?id=${id}`, {
@@ -135,11 +136,12 @@ class Main extends Component {
       this.setState({ taggedSnippets: updated })
     })
     .catch(err => console.log('err -->', err));
-  }
+  };
 
   // Render Logic
 
   render() {
+    
     return (
       <React.Fragment>
         <div className='container'>

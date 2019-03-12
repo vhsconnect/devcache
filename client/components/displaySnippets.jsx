@@ -1,6 +1,6 @@
 import React from 'react';
 
-const displaySnippets = (props) => {
+const displaySnippets = props => {
   const snippetsArray = props.taggedSnippets;
   const snippetsDisplayArray = [];
 
@@ -34,6 +34,7 @@ const displaySnippets = (props) => {
       </div>
     );
   };
+  
   return (
     <div className='tagged-snippets-box'>
       { snippetsDisplayArray }

@@ -1,3 +1,4 @@
 node_modules
 server/serverConfig.js
-build/
+build/bundle.js
+build/index.html
