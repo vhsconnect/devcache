@@ -159,6 +159,10 @@ input,
 textarea {
   padding: 5px;
 }
+h3 {
+  font-size: 4rem;
+  text-align: center;
+}
 .login-box {
   width: 100%;
   max-width: 500px;
