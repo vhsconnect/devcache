@@ -24,7 +24,8 @@ app.post('/login', controller.verifyUser, sessionController.setCookie, sessionCo
 app.post('/signup', controller.createUser, sessionController.setCookie, sessionController.startSession)
 app.post('/createsnippet', snippetController.createSnippet, snippetController.createTags)
 app.get('/gettags', snippetController.getAllUserTags)
-
+app.get('/getsnippetsbytag', snippetController.getSnipetIdsByTag, snippetController.getSnippetsBySnippetIds)
+app.get('/deletesnippetbyid', snippetController.deleteSnippet)
 
 //***************** */
 app.listen(3000, () => console.log('now listening on port 3000 .-.') )
