@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchBar from './searchBar.jsx'
 
-const sideBar = (props) => {
-  const userTags = props.userTags;
-  const tagSet = new Set(userTags);
+const sideBar = props => {
+  
+  const tagSet = new Set(props.userTags);
   const tagArray = Array.from(tagSet);
   const displayArray = [];
 
@@ -18,6 +18,7 @@ const sideBar = (props) => {
       </p>
     );
   };
+
   return (
     <div className='side-bar'>
       <SearchBar 

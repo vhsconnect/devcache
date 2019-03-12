@@ -1,137 +1,130 @@
 const serverConfig = require('./serverConfig');
 const { Pool } = require("pg");
 const pool = new Pool(serverConfig);
-const cookieParser = require('cookie-parser');
 
 const snippetController = {};
 
+// Middleware Methods
+
 snippetController.createSnippet = (req, res, next) => {
-  const { snippet, comments, project } = req.body
+  const { snippet, comments, project } = req.body;
   const user_id = req.cookies.user_id;
-  console.log(user_id)
   const date = new Date();
   const snippetQuery = {
     name: 'create-snippet',
-    text: 'INSERT into snippets (snippet, comments, project, date, user_id) values ($1, $2, $3, $4, $5) RETURNING id ;',
+    text: 'INSERT into snippets (snippet, comments, project, date, user_id) values ($1, $2, $3, $4, $5) RETURNING id;',
     values: [snippet, comments, project, date, user_id]
-  }
+  };
+
   pool.query(snippetQuery)
   .then(result=> {
-    console.log(result)
     res.locals.snippet_id = result.rows[0].id
     next();
   })
-  .catch(err=>console.error(err.stack))
-}
+  .catch(err => console.log(err.stack));
+};
 
-snippetController.createTags = (req, res, next) => {
+snippetController.createTags = (req, res) => {
   const promises = [];
   const snippet_id = res.locals.snippet_id;
-    const tags = req.body.tags.split(", ");
-    tags.forEach(tag => {
-      let tagQuery = {
-        name: 'create-tags',
-        text: 'INSERT into tags (tag, snippet_id) values ($1, $2);',
-        values: [tag, snippet_id]
-      }
-      promises.push(tagQuery)
-    })
-    Promise.all(promises)
-    .then(values => {
-      values.forEach(tagQuery=>pool.query(tagQuery))
-      res.send(201, 'tags successfully added')
-    })
-    .catch(err => console.log(err.message))
+  const tags = req.body.tags.split(", ");
+
+  tags.forEach(tag => {
+    const tagQuery = {
+      name: 'create-tags',
+      text: 'INSERT into tags (tag, snippet_id) values ($1, $2);',
+      values: [tag, snippet_id]
+    };
+
+    promises.push(tagQuery);
+  });
+
+  Promise.all(promises)
+  .then(values => {
+    values.forEach(tagQuery => pool.query(tagQuery));
+    res.status(201).send('Tags added.');
+  })
+  .catch(err => console.log(err.message));
 }
 
-snippetController.getAllUserTags = (req, res, next) => {
+snippetController.getAllUserTags = (req, res) => {
   const user_id = req.cookies.user_id;
   const query = {
     name: 'get-all-tags',
-    text: 'SELECT tags.tag from tags INNER JOIN snippets on snippets.id = tags.snippet_id WHERE snippets.user_id = $1;',
+    text: 'SELECT tags.tag FROM tags INNER JOIN snippets ON snippets.id = tags.snippet_id WHERE snippets.user_id = $1;',
     values: [user_id]
-  }
+  };
+
   pool.query(query)
   .then(result => {
     const tags = [];
-    result.rows.forEach(obj => tags.push(obj.tag))
+    result.rows.forEach(obj => tags.push(obj.tag));
     res.json(tags);
+  });
+};
+
+snippetController.getSnippetIdsByTag = (req, res, next) => {
+  const tag = req.query.tag;
+  const IdQuery = {
+    name: 'getSnippetIdsByTag',
+    text: 'SELECT snippet_id FROM tags WHERE tags.tag = $1;',
+    values: [tag]
+  };
+
+  pool.query(IdQuery)
+  .then(result => {
+    const resultArr = [];
+    result.rows.forEach(row => resultArr.push(row.snippet_id));
+    res.locals.snippets = resultArr;
+    next();
   })
-}
+  .catch(err => console.error(err.stack));
+};
 
-snippetController.getSnipetIdsByTag = (req, res, next) => {
-   const tag = req.query.tag;
-   console.log(tag);
-   const IdQuery = {
-     name: 'getSnippetIdsByTag',
-     text: 'SELECT snippet_id FROM tags WHERE tags.tag = $1;',
-     values: [tag]
-   }
-   pool.query(IdQuery)
-   .then(result => {
-    let resultArr = []; 
-    result.rows.forEach(row => { 
-      resultArr.push(row.snippet_id)
-     })
-     res.locals.snippets = resultArr;
-     next()
-   })
-   .catch(e => console.error(e.stack))
-}
-
-snippetController.getSnippetsBySnippetIds = (req, res, next) => {
+snippetController.getSnippetsBySnippetIds = (req, res) => {
   const snippetIds = res.locals.snippets;
   const userId = req.cookies.user_id;
-  promises = []
+  const promises = [];
+
   snippetIds.forEach(id =>{
-    console.log(id)
-    let query = {
+    const query = {
       name: 'getSnippetsBySnippetId', 
-      text: 'SELECT * from snippets where snippets.id = $1 AND snippets.user_id = $2;',
+      text: 'SELECT * FROM snippets WHERE snippets.id = $1 AND snippets.user_id = $2;',
       values: [id, userId]
-    }
+    };
+
     promises.push(query);
-  })
+  });
 
-    Promise.all(promises)
+  Promise.all(promises)
   .then(snippetQuery => {
-    let resultsArr = [];
-    snippetQuery.forEach( (x, y) => {
-      if (y < 2){
-        console.log(x)
-        let temp =  pool.query(x)
-        resultsArr.push(temp)
-      }
-    }) 
-    console.log(resultsArr);
+    const resultsArr = [];
+    snippetQuery.forEach((x, y) => {
+      if (y < 2) resultsArr.push(pool.query(x));
+    });
+
     Promise.all(resultsArr)
-    .then(snippets=> {
+    .then(snippets => {
       let arr = []; 
-      snippets.forEach(obj => {
-        arr.push(obj.rows)
-      })
-      res.json(arr)
+      snippets.forEach(obj => arr.push(obj.rows));
+      res.json(arr);
     }) 
-    .catch(e=>console.error(e.stack))
-  })
+    .catch(err => console.error(err.stack));
+  });
+};
 
-}
-
-snippetController.deleteSnippet = (req, res, next) => {
+snippetController.deleteSnippet = (req, res) => {
   const id = req.query.id;
-  console.log(id);
   const deleteQuery = {
     name: 'delete-snippet',
-    text: 'DELETE FROM snippets where snippets.id = $1;',
+    text: 'DELETE FROM snippets WHERE snippets.id = $1;',
     values: [id]
-  }
+  };
+
   pool.query(deleteQuery)
-    .then(data => {
-      res.status(200).send('snippet deleted')
-    })
-
-
-} 
+  .then(data => {
+    res.status(200).send('Snippet deleted.')
+  });
+};
 
 module.exports = snippetController;
-

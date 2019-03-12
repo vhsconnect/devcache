@@ -1,6 +1,6 @@
 import React from 'react';
 
-const snipDetails = (props) => {
+const snipDetails = props => {
 
   return (
     <div className='details-box'>

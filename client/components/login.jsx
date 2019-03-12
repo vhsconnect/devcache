@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Login = props => {
-
+  
   return (
     <div className='login-box'>
       <input
@@ -23,7 +23,7 @@ const Login = props => {
       >
         Login.
       </button>
-      <a onClick={ props.register }>Register</a> 
+      <a onClick={ props.registerUser }>Register</a> 
     </div>
   );
 };
