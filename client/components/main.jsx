@@ -29,69 +29,71 @@ class Main extends Component {
     this.updateComments = this.updateComments.bind(this);
     this.updateProjectTag = this.updateProjectTag.bind(this);
     this.updateTags = this.updateTags.bind(this);
-    this.submitSnippet = this.submitSnippet.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
+
+    this.submitSnippet = this.submitSnippet.bind(this);
     this.submitSearch = this.submitSearch.bind(this);
+    
     this.grabSnippetsFromDB = this.grabSnippetsFromDB.bind(this);
     this.getTagsFromDB = this.getTagsFromDB.bind(this);
   };
 
-  // State Methods
+  // Helper Functions
 
   getTagsFromDB() {
 
     fetch('http://localhost:3000/gettags', {
-          headers: {
-            "Content-Type": "application/json"
-          },
-          method: 'get'
+      headers: { "Content-Type": "application/json" },
+      method: 'get'
     })
     .then(res => res.json())
     .then(data => this.setState({ userTags: data }))
-    .catch(err => console.log('err -->', err));
+    .catch(err => console.error(err));
   };
 
   grabSnippetsByTag(tag) {
 
     fetch(`http://localhost:3000/getsnippetsbytag/?tag=${tag}`, {
-          headers: {
-            "Content-Type": "application/json"
-          },
-          method: 'get'
+      headers: { "Content-Type": "application/json" },
+      method: 'get'
     })
     .then(res => res.json())
-    .then(data => {
-      this.setState({ taggedSnippets: data })
-    })
+    .then(data => this.setState({ taggedSnippets: data }))
     .catch(err => console.log('err -->', err));
+  };
+
+  // Update Methods
+
+  updateSnippetContent(e) {
+    this.setState({ snippet: e.target.value });
+  };
+  
+  updateComments(e) {
+    this.setState({ comments: e.target.value });
+  };
+  
+  updateProjectTag(e) {
+    this.setState({ project: e.target.value });
+  };
+  
+  updateTags(e) {
+    this.setState({ tags: e.target.value });
+  };
+  
+  updateSearch(e) {
+    this.setState({ search: e.target.value });
   };
 
   componentDidMount() {
     this.getTagsFromDB();
   };
 
-  updateSnippetContent(e) {
-    this.setState({ snippet: e.target.value });
-  };
+  // Database Methods
 
-  updateComments(e) {
-    this.setState({ comments: e.target.value });
-  };
-
-  updateProjectTag(e) {
-    this.setState({ project: e.target.value });
-  };
-
-  updateTags(e) {
-    this.setState({ tags: e.target.value });
-  };
-  
   submitSnippet() {
 
     fetch('http://localhost:3000/createsnippet', {
-      headers: {
-        "Content-Type": "application/json"
-      }, 
+      headers: { "Content-Type": "application/json" }, 
       method: 'post',
       body: JSON.stringify({ 
         snippet: this.state.snippet,
@@ -101,15 +103,8 @@ class Main extends Component {
       })
     })
     .then(res => {
-      if (res.ok) {
-        this.getTagsFromDB();
-      };
-    })
-  };
-
-  updateSearch(e) {
-    console.log(e.target.value);
-    this.setState({ search: e.target.value });
+      if (res.ok) this.getTagsFromDB()
+    });
   };
 
   submitSearch() {
@@ -123,19 +118,17 @@ class Main extends Component {
   };
 
   deleteSnippet(id, index) {
+
     fetch(`http://localhost:3000/deletesnippetbyid?id=${id}`, {
-          headers: {
-            "Content-Type": "application/json"
-          },
-          method: 'get'
+      headers: { "Content-Type": "application/json" },
+      method: 'get'
     })
-    .then(res => res.json())
-    .then(data => {
+    .then(() => {
       let updated = [...this.state.taggedSnippets];
       updated.splice(index, 1);
       this.setState({ taggedSnippets: updated })
     })
-    .catch(err => console.log('err -->', err));
+    .catch(err => console.error(err));
   };
 
   // Render Logic
